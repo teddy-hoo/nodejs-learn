@@ -1,0 +1,14 @@
+{
+  "name": "topCoder1",
+  "version": "0.0.0",
+  "description": "for top coder",
+  "main": "index.js",
+  "scripts": {
+    "test": "tcTest"
+  },
+  "dependencies": {
+    "mongodb": "~2.0"
+  },
+  "author": "LingchuanHu",
+  "license": "BSD-2-Clause"
+}

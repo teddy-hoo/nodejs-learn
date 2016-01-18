@@ -1,3 +1,9 @@
+/**
+ * author: hulingchuan@hotmail.com
+ *
+ * libs
+ */
+
 var ObjectId = require('mongodb').ObjectId
 
 var arrayToHash = function (arr) {

@@ -1,3 +1,9 @@
+/**
+ * author: hulingchuan@hotmail.com
+ * 
+ * abstract of mongodb
+ */
+
 var operators = require('./operation');
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');

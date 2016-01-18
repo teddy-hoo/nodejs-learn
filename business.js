@@ -1,3 +1,9 @@
+/**
+ * author: hulingchuan@hotmail.com
+ * 
+ * business logic
+ */
+
 var mongo = require('./mongo')
 var lib   = require('./lib')
 
@@ -15,16 +21,10 @@ exports.download = function (callback) {
     var objectIds = lib.idToObjectId(Object.keys(idAndStep))
     var maxQuery = [
       {
-        $match: {
-          playerId: {$in: objectIds},
-          action: 1,
-        }
+        $match: { playerId: {$in: objectIds}, action: 1 }
       },
       {
-        $group: {
-          _id: "$playerId",
-          time: {$max: "$when"}
-        }
+        $group: { _id: "$playerId", time: {$max: "$when"} }
       }
     ]
     mongo.aggregate('playerlogs', maxQuery, function (maxLogs) {

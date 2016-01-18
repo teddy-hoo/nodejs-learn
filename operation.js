@@ -1,5 +1,9 @@
-// CRUD of mongo
-// author: hulingchuan@hotmail.com
+/**
+ * author: hulingchuan@hotmail.com
+ * 
+ * mongo operations
+ */
+
 
 exports.find = function (db, name, query, callback) {
 

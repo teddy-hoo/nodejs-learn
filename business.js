@@ -12,10 +12,11 @@ exports.canDownload = function (callback) {
 exports.download = function (callback) {
   mongo.find('players', {}, function (players) {
     var idAndStep = lib.getIdAndStep(players)
+    var objectIds = lib.idToObjectId(Object.keys(idAndStep))
     var maxQuery = [
       {
         $match: {
-          //playerId: {$in: Object.keys(idAndStep)},
+          playerId: {$in: objectIds},
           action: 1,
         }
       },
@@ -27,16 +28,16 @@ exports.download = function (callback) {
       }
     ]
     mongo.aggregate('playerlogs', maxQuery, function (maxLogs) {
-      var minQuery = [
+       var minQuery = [
         {
-          $match: {action: 1}
+          $match: {action: 1, playerId: {$in: objectIds}}
         },
         {
           $group: {_id: "$playerId", time: {$min: "$when"}}
         }
       ]
       mongo.aggregate('playerlogs', minQuery, function (minLogs) {
-        var one = lib.compose(idAndStep, maxLogs, minLogs)
+         var one = lib.compose(idAndStep, maxLogs, minLogs)
         //var sorted = lib.sort(one)
         callback(lib.toCSV(one))
       })

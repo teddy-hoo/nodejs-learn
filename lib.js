@@ -1,3 +1,4 @@
+var ObjectId = require('mongodb').ObjectId
 
 var arrayToHash = function (arr) {
   var hash = {}
@@ -19,8 +20,8 @@ exports.compose = function (players, maxlogs, minlogs) {
       {
         ibmId: players[p].ibmId,
         step: players[p].step,
-        firstAccessTime: max[p],
-        lastAccessTime: min[p],
+        firstAccessTime: min[p],
+        lastAccessTime: max[p],
       }
     )
   }
@@ -63,3 +64,11 @@ exports.getIdAndStep = function (players) {
   return idAndStep
 }
 
+exports.idToObjectId = function (id) {
+  var objectIds = []
+  id.forEach (function (i) {
+    objectIds.push(new ObjectId(i))
+  })
+
+  return objectIds;
+}

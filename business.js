@@ -37,9 +37,9 @@ exports.download = function (callback) {
         }
       ]
       mongo.aggregate('playerlogs', minQuery, function (minLogs) {
-         var one = lib.compose(idAndStep, maxLogs, minLogs)
-        //var sorted = lib.sort(one)
-        callback(lib.toCSV(one))
+        var one = lib.compose(idAndStep, maxLogs, minLogs)
+        var sorted = lib.sort(one)
+        callback(lib.toCSV(sorted))
       })
     })
   })

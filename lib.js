@@ -72,3 +72,11 @@ exports.idToObjectId = function (id) {
 
   return objectIds;
 }
+
+exports.sort = function (array) {
+  array.sort(function(a, b){
+    return a.ibmId.toLowerCase() > b.ibmId.toLowerCase() ? 1 : -1;
+  })
+
+  return array
+}
